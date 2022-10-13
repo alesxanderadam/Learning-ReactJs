@@ -12,12 +12,14 @@ builder.Services.AddScoped<IBidRepository, BidRepository>();
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+   app.UseSwagger();
+   app.UseSwaggerUI();
 
-app.UseCors(p => p.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+
+app.UseCors(p => p.WithOrigins("http://localhost:3000", "http://localhost:3001").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
 app.MapHouseEndpoints();
-app.MapBidEndpoints();
 
+app.MapBidEndpoints();
 app.Run();
+
